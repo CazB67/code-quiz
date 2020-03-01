@@ -1,7 +1,14 @@
+//Naming time variable to write time to the page
 var timeEl = document.getElementById("time");
 
-var secondsLeft = 10;
 
+//Commu
+document.getElementById("btnStart").addEventListener("click", setTime);
+
+
+var secondsLeft = 120;
+
+//Function to decrement time
 function setTime() {
   var timerInterval = setInterval(function() {
     secondsLeft--;
@@ -13,4 +20,12 @@ function setTime() {
     }
 
   }, 1000);
+}
+
+document.getElementById("fiveSecondDecrement").addEventListener("click", skipTime);
+
+//Function to subtract 5 seconds when a question is answered incorrectly
+function skipTime() {
+    secondsLeft= secondsLeft - 5;
+    
 }
