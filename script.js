@@ -8,6 +8,7 @@ var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
+var result = document.getElementById("result");
 
 document.getElementById("btnStart").addEventListener("click", onButtonStart);
 function onButtonStart(){
@@ -32,13 +33,10 @@ function setTime() {
   }, 1000);
 }
 
-document.getElementById("fiveSecondDecrement").addEventListener("click", skipTime);
 
 //Function to subtract 5 seconds when a question is answered incorrectly
 function skipTime() {
     secondsLeft= secondsLeft - 5;
-    
-    
     
 }
 
@@ -157,12 +155,24 @@ choiceB.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:cente
 choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff;font-size:24px;");
 choiceD.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 
+
 function checkAnswer(answer) {
   var questionThatWasAsked = questions[currentQuestionIndex - 1].question;
   var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
   
+  if(theAnswerToTheQuestion === answer) {
+      result.innerHTML = "Correct!";
+    }else {
+      result.innerHTML = "Wrong!";
+      skipTime();
+    }
+    var resultTextInterval = setInterval(function() {
+      result.innerHTML="";
+      renderQuestions();
+      clearInterval(resultTextInterval);
+    }, 2000);
 
-  alert("questionThatWasAsked: " + questionThatWasAsked + " theAnswerToTheQuestion: " + theAnswerToTheQuestion + " Your Answer: " + answer);
-  renderQuestions();
+  
 }
+
 
