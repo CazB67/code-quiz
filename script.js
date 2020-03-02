@@ -118,7 +118,6 @@ var runningQuestionIndex = 0;
 
 
 function renderQuestions(){
-
 //Removes explanation that was on start page.
 explanation.innerHTML="";
  var q = questions[runningQuestionIndex];
@@ -134,4 +133,8 @@ choiceA.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:cente
 choiceB.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff;font-size:24px;");
 choiceD.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
+
+function checkAnswer(answer) {
+  alert("answer " + answer);
+}
 
