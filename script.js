@@ -56,7 +56,7 @@ var questions = [
   choiceD : "Colons::",
 },
 {
-  question :"In the array var zooAnimals = [\"Zebra\", \"Rhino\", \"Giraffe\", \"Owl\",]; Which animal is in index 2?",
+  question :"In the array var zooAnimals = [\"Zebra\", \"Rhino\", \"Giraffe\", \"Owl\"]; Which animal is in index 2?",
   choiceA : "Owl",
   choiceB : "Giraffe",
   choiceC : "Zebra",
@@ -129,4 +129,9 @@ explanation.innerHTML="";
  choiceD.innerHTML = q.choiceD;
  runningQuestionIndex++;
 }
+
+choiceA.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
+choiceB.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
+choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff;font-size:24px;");
+choiceD.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 
