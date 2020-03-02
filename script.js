@@ -47,6 +47,7 @@ var questions = [
   choiceB : "Hi Typing Markup Language",
   choiceC : "His Terrible Madeup Language",
   choiceD : "Displayed in a Web Browser",
+  answer : "A",
 },
 {
   question :"How do we show a value is in a string?",
@@ -54,6 +55,7 @@ var questions = [
   choiceB : "Curly brackets{}",
   choiceC : 'Quotation marks""',
   choiceD : "Colons::",
+  answer : "C",
 },
 {
   question :"In the array var zooAnimals = [\"Zebra\", \"Rhino\", \"Giraffe\", \"Owl\"]; Which animal is in index 2?",
@@ -61,6 +63,7 @@ var questions = [
   choiceB : "Giraffe",
   choiceC : "Zebra",
   choiceD : "Rhino",
+  answer : "B",
 },
 {
   question :"Which would return a boolean?",
@@ -68,6 +71,7 @@ var questions = [
   choiceB : "Confirm",
   choiceC : "Alert",
   choiceD : "prompt",
+  answer : "B",
 },
 {
   question :"What will console.log(3 ===\"3\"); return in the console?",
@@ -75,6 +79,7 @@ var questions = [
   choiceB : "6",
   choiceC : "False",
   choiceD : "3",
+  answer : "C"
 },
 {
   question :"What is Javascript used for?",
@@ -82,6 +87,7 @@ var questions = [
   choiceB : "Style and layout content on a web page",
   choiceC : "To implement complex features on web pages such as interactive content",
   choiceD : "Clear a web page",
+  answer : "C"
 },
 {
   question :"What does CSS stand for?",
@@ -89,6 +95,7 @@ var questions = [
   choiceB : "Creating Silly Styles",
   choiceC : "Connecting Style Servers",
   choiceD : "Cascading Style Sheets",
+  answer : "D"
 },
 {
   question :"Inside which HTML element do we link the Javascript code?",
@@ -96,6 +103,7 @@ var questions = [
   choiceB : "&lt;javascript&gt;",
   choiceC : "&lt;js&gt;",
   choiceD : "&lt;body&gt;",
+  answer : "A"
 },
 {
   question :"Who invented Javascript?",
@@ -103,6 +111,7 @@ var questions = [
   choiceB : "Bill Gates",
   choiceC : "Brendan Eich",
   choiceD : "James Gosling",
+  answer : "C"
 },
 {
   question :"A for loop needs an iterator, increament and?",
@@ -110,23 +119,25 @@ var questions = [
   choiceB : "name",
   choiceC : "value",
   choiceD : "number",
+  answer : "C"
 }
 ];
 
 var lastQuestionIndex = questions.length -1;
-var runningQuestionIndex = 0;
+var currentQuestionIndex = 0;
 
 
 function renderQuestions(){
 //Removes explanation that was on start page.
 explanation.innerHTML="";
- var q = questions[runningQuestionIndex];
+btnStart.style.display="none";
+ var q = questions[currentQuestionIndex];
  question.innerHTML = q.question;
  choiceA.innerHTML = q.choiceA;
  choiceB.innerHTML = q.choiceB;
  choiceC.innerHTML = q.choiceC;
  choiceD.innerHTML = q.choiceD;
- runningQuestionIndex++;
+ currentQuestionIndex++;
 }
 
 choiceA.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
@@ -135,6 +146,7 @@ choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:cente
 choiceD.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 
 function checkAnswer(answer) {
-  alert("answer " + answer);
+
+
 }
 
