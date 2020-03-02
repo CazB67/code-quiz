@@ -15,7 +15,7 @@ function onButtonStart(){
   setTime();
 }
 
-var secondsLeft = 120;
+var secondsLeft = 60;
 
 //Function to decrement time
 function setTime() {
@@ -27,10 +27,19 @@ function setTime() {
 
     if(secondsLeft === 0) {
       clearInterval(timerInterval);
+      gameOver();
+
      
     }
 
   }, 1000);
+}
+
+function gameOver() {
+  result.innerHTML="GAME OVER";
+  var resultTextInterval = setInterval(function() {
+    clearInterval(resultTextInterval);
+  }, 4000);
 }
 
 
