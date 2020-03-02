@@ -1,3 +1,4 @@
+
 .container{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -11,4 +12,8 @@ h1 {
 
 p {
     font-size: 24px;
+}
+
+#choices {
+    padding-bottom: 30px;
 }

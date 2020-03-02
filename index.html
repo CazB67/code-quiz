@@ -10,23 +10,28 @@
 <body>
     <div class="container">
         <div class="row">
-          <div class="col-md-2">
-           <p>Highscores</p>
-          </div>
+          <div class="col-md-2"><p>Highscores</p></div>
           <div class="col-md-8"></div>
-          <div class="col-md-2">
-            <p >Time:<span id="time">120</span></p>
-
-          </div>
+          <div class="col-md-2"><p >Time:<span id="time">120</span></p></div>
         </div>
+
         <div class="row text-center">
             <div class="col-md-12">
-                <h1>Coding Quiz Challenge</h1>
-                <p>This is a coding quiz. Select the best responses from the list.</p>
+              <div id="quiz" p-3>
+                <h1 id="question">Coding Quiz Challenge</h1>
+                <p id="explanation">This is a coding quiz. Select the best responses from the list.</p>
+                <div id="choices">
+                  <div class="choice" id="A" onclick="checkAnswer('A')"></div>
+                  <div class="choice" id="B" onclick="checkAnswer('B')"></div>
+                  <div class="choice" id="C" onclick="checkAnswer('C')"></div>
+                  <div class="choice" id="D" onclick="checkAnswer('D')"></div>
+                </div>
+              </div>
+              
                 <button type="button" class="btn btn-primary" id="btnStart">Start Quiz</button>
                 <button type="button" class="btn btn-primary" id="fiveSecondDecrement">Five Second Decrement</button>
-               </div>
-
+            </div>
+        </div>
     </div>
 
     
