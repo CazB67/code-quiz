@@ -18,13 +18,15 @@ var secondsLeft = 120;
 
 //Function to decrement time
 function setTime() {
+  renderQuestions();
   var timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
+    
 
     if(secondsLeft === 0) {
       clearInterval(timerInterval);
-      sendMessage();
+     
     }
 
   }, 1000);
@@ -35,7 +37,8 @@ document.getElementById("fiveSecondDecrement").addEventListener("click", skipTim
 //Function to subtract 5 seconds when a question is answered incorrectly
 function skipTime() {
     secondsLeft= secondsLeft - 5;
-    renderQuestions();
+    
+    
     
 }
 
@@ -123,21 +126,30 @@ var questions = [
 }
 ];
 
-var lastQuestionIndex = questions.length -1;
 var currentQuestionIndex = 0;
 
 
 function renderQuestions(){
-//Removes explanation that was on start page.
-explanation.innerHTML="";
-btnStart.style.display="none";
- var q = questions[currentQuestionIndex];
- question.innerHTML = q.question;
- choiceA.innerHTML = q.choiceA;
- choiceB.innerHTML = q.choiceB;
- choiceC.innerHTML = q.choiceC;
- choiceD.innerHTML = q.choiceD;
- currentQuestionIndex++;
+  //Removes explanation that was on start page.
+  explanation.innerHTML="";
+  // Hide the button
+  btnStart.style.display="none";
+
+  // CurrentQuestionIndex is a global variable that is incremented each time
+  // a question is answered (correctly or incorrectly)
+  var currentQuestion = questions[currentQuestionIndex];
+  
+  //the variable question is a reference to the html element for displaying the question. 
+  question.innerHTML = currentQuestion.question;
+
+  // Setting the question answer options. 
+  choiceA.innerHTML = currentQuestion.choiceA;
+  choiceB.innerHTML = currentQuestion.choiceB;
+  choiceC.innerHTML = currentQuestion.choiceC;
+  choiceD.innerHTML = currentQuestion.choiceD;
+
+  // Increment the question index for the next question.
+  currentQuestionIndex++;
 }
 
 choiceA.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
@@ -146,7 +158,11 @@ choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:cente
 choiceD.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 
 function checkAnswer(answer) {
+  var questionThatWasAsked = questions[currentQuestionIndex - 1].question;
+  var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
+  
 
-
+  alert("questionThatWasAsked: " + questionThatWasAsked + " theAnswerToTheQuestion: " + theAnswerToTheQuestion + " Your Answer: " + answer);
+  renderQuestions();
 }
 
