@@ -16,7 +16,9 @@ This has been deployed to the URLs
 
 * The URL of the GitHub repository is https://github.com/CazB67/code-quiz
 
-To take the Code Quiz follow the link above to the deployed application. Click on the 'Start Quiz' button. The user is then taken to the first question where they are given four options. ![First question of Code Quiz]("Capture.png")
+To take the Code Quiz follow the link above to the deployed application. Click on the 'Start Quiz' button. The user is then taken to the first question where they are given four options. 
+
+![First question of Code Quiz](Capture.PNG)
 
 
 ## Credits
