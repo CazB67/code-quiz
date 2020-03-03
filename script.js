@@ -1,55 +1,66 @@
-//Naming time variable to write time to the page
+//Naming the variables with HTML IDs
 var timeEl = document.getElementById("time");
 var choicesEl = document.getElementById("choices");
 var quizEl = document.getElementById("quiz");
-var question = document.getElementById("question");
+var questionEl = document.getElementById("question");
 var explanation = document.getElementById("explanation");
+var scoreEL = document.getElementById("score");
+var score = 0;
 var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var result = document.getElementById("result");
+var currentQuestionIndex = 0;
 
+//Adding event listener to button
 document.getElementById("btnStart").addEventListener("click", onButtonStart);
+
+//Function for what happens when the button starts. Calls setTime function.
 function onButtonStart(){
   setTime();
 }
 
+//Define variable for setTime and skipTime functions
 var secondsLeft = 60;
-
-//Function to decrement time
+var timerInterval
+//Function to decrement time by 1 second
 function setTime() {
+
+  //Call renderQuestions function
   renderQuestions();
-  var timerInterval = setInterval(function() {
+
+  timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
-    
 
-    if(secondsLeft === 0) {
+    if(secondsLeft <= 0)  {
       clearInterval(timerInterval);
       gameOver();
-
-     
+      timeEl.textContent=0;     
     }
-
   }, 1000);
+
+
+
 }
 
+//So that text GAME OVER displays and goes to high score entry
 function gameOver() {
   result.innerHTML="GAME OVER";
+  currentQuestionIndex = questions.length + 1;
   var resultTextInterval = setInterval(function() {
     clearInterval(resultTextInterval);
-  }, 4000);
+  }, 2000);
+  //window.location.replace("scores.html");
+
 }
 
 
-//Function to subtract 5 seconds when a question is answered incorrectly
-function skipTime() {
-    secondsLeft= secondsLeft - 5;
+
     
-}
 
-//Quiz questions array
+//Quiz questions, choices and answers array
 var questions = [
 {
   question: "What does HTML stand for?",
@@ -124,19 +135,22 @@ var questions = [
   answer : "C"
 },
 {
-  question :"A for loop needs an iterator, increament and?",
+  question :"A for loop needs an iterator, increment and?",
   choiceA : "condition",
   choiceB : "name",
   choiceC : "value",
   choiceD : "number",
-  answer : "C"
+  answer : "A"
 }
 ];
 
-var currentQuestionIndex = 0;
+
 
 
 function renderQuestions(){
+
+
+
   //Removes explanation that was on start page.
   explanation.innerHTML="";
   // Hide the button
@@ -147,7 +161,7 @@ function renderQuestions(){
   var currentQuestion = questions[currentQuestionIndex];
   
   //the variable question is a reference to the html element for displaying the question. 
-  question.innerHTML = currentQuestion.question;
+  questionEl.innerHTML = currentQuestion.question;
 
   // Setting the question answer options. 
   choiceA.innerHTML = currentQuestion.choiceA;
@@ -155,33 +169,60 @@ function renderQuestions(){
   choiceC.innerHTML = currentQuestion.choiceC;
   choiceD.innerHTML = currentQuestion.choiceD;
 
-  // Increment the question index for the next question.
-  currentQuestionIndex++;
+    // Increment the question index for the next question.
+    currentQuestionIndex++;
+
+
+
 }
 
+
+function checkAnswer(answer) {
+  var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
+
+    if(theAnswerToTheQuestion === answer) 
+    {
+        result.innerHTML = "Correct!";
+        score++;
+        scoreEL.textContent = score;
+    } 
+    else 
+    {
+        result.innerHTML = "Wrong!";
+        skipTime();
+    }
+    if (currentQuestionIndex < questions.length) {
+      var resultTextInterval = setInterval(function() {
+        result.innerHTML="";
+        renderQuestions();
+        clearInterval(resultTextInterval);
+      }, 2000);
+    }
+    else {
+      var resultTextInterval = setInterval(function() {
+        result.innerHTML="";
+        clearInterval(timerInterval);
+        gameOver();
+        clearInterval(resultTextInterval);
+      }, 2000);
+
+      
+    }
+  }
+
+//Function to subtract 5 seconds when a question is answered incorrectly
+function skipTime() {
+  secondsLeft= secondsLeft - 5;
+}
+
+
+  //Set attributes of possible answers
 choiceA.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 choiceB.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff;font-size:24px;");
 choiceD.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 
 
-function checkAnswer(answer) {
-  var questionThatWasAsked = questions[currentQuestionIndex - 1].question;
-  var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
-  
-  if(theAnswerToTheQuestion === answer) {
-      result.innerHTML = "Correct!";
-    }else {
-      result.innerHTML = "Wrong!";
-      skipTime();
-    }
-    var resultTextInterval = setInterval(function() {
-      result.innerHTML="";
-      renderQuestions();
-      clearInterval(resultTextInterval);
-    }, 2000);
 
-  
-}
 
 
