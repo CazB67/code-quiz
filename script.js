@@ -15,7 +15,7 @@ var scoreEL = document.getElementById("score");
 var score = 0;
 var result = document.getElementById("result");
 var scoreInitialsEl = document.getElementById("scoreInitials");
-//document.getElementById("hide").style.display="none";
+document.getElementById("hide").style.display="none";
 
 var initialsList =document.querySelector("#initials-list");
 var initials = [];
@@ -26,7 +26,7 @@ document.getElementById("submit").addEventListener("click", submit);
 function submit() {
 event.preventDefault();
 
-var userInput = scoreInitialsEl.value.trim();
+var userInput = scoreInitialsEl.value.trim()  + " - " + score;
 if (userInput === ""){
   return;
 }
@@ -45,7 +45,6 @@ function renderInitials () {
   initialsList.innerHTML ="";
    
   for(i=0; i< initials.length; i++) {
-    console.log(score + " - " + scoreInitialsEl.value);
     var initial = initials[i];
     var liElement = document.createElement("li");
     liElement.textContent = initial;
@@ -54,20 +53,20 @@ function renderInitials () {
   
 }
 }
-/*
-function submit() {
-    initialsList.innerHTML ="";
-    
-    for(i=0; i< 2; i++) {
-      console.log(score + " - " + scoreInitialsEl.value);
-     // var initial = initials[i];
-      var liElement = document.createElement("li");
-      liElement.textContent = scoreInitialsEl.value;
-      liElement.setAttribute("data-index", i);
-       initialsList.appendChild(liElement);
-  }  
+
+function init() {
+  // Get stored todos from localStorage
+  // Parsing the JSON string to an object
+  var storedInitials = JSON.parse(localStorage.getItem("initials"));
+
+  // If todos were retrieved from localStorage, update the todos array to it
+  if (storedInitials !== null) {
+    initials = storedInitials;
+  }
+
+  // Render todos to the DOM
+  renderInitials();
 }
-*/
 
 
 
@@ -109,6 +108,7 @@ function gameOver() {
   currentQuestionIndex = questions.length + 1;
   alert("Your score is " + score);
   document.getElementById("hide").style.display="block";
+  init();
   var resultTextInterval = setInterval(function() {
     clearInterval(resultTextInterval);
   }, 2000);
