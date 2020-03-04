@@ -1,17 +1,32 @@
 //Naming the variables with HTML IDs
+
+//Span element 60 
 var timeEl = document.getElementById("time");
-var choicesEl = document.getElementById("choices");
-var quizEl = document.getElementById("quiz");
+
 var questionEl = document.getElementById("question");
-var explanation = document.getElementById("explanation");
-var scoreEL = document.getElementById("score");
-var score = 0;
+var explanationEl = document.getElementById("explanation");
 var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
-var result = document.getElementById("result");
 var currentQuestionIndex = 0;
+
+var scoreEL = document.getElementById("score");
+var score = 0;
+var result = document.getElementById("result");
+var scoreInitialsEl = document.getElementById("scoreInitials");
+//document.getElementById("hide").style.display="none";
+
+var scoreList =document.getElementById("score-list");
+var scoreArray = [];
+
+
+var submitButton= document.getElementById("submit").addEventListener("click", submit );
+
+function submit() {
+    alert(score + scoreInitialsEl.value);
+}
+
 
 //Adding event listener to button
 document.getElementById("btnStart").addEventListener("click", onButtonStart);
@@ -49,16 +64,17 @@ function setTime() {
 function gameOver() {
   result.innerHTML="GAME OVER";
   currentQuestionIndex = questions.length + 1;
+  alert("Your score is " + score);
+  document.getElementById("hide").style.display="block";
   var resultTextInterval = setInterval(function() {
     clearInterval(resultTextInterval);
   }, 2000);
   //window.location.replace("scores.html");
 
+  
+
 }
 
-
-
-    
 
 //Quiz questions, choices and answers array
 var questions = [
@@ -79,7 +95,7 @@ var questions = [
   answer : "C",
 },
 {
-  question :"In the array var zooAnimals = [\"Zebra\", \"Rhino\", \"Giraffe\", \"Owl\"]; Which animal is in index 2?",
+  question :"In the array <br>var zooAnimals = [\"Zebra\", \"Rhino\", \"Giraffe\", \"Owl\"]; <br>Which animal is in index 2?",
   choiceA : "Owl",
   choiceB : "Giraffe",
   choiceC : "Zebra",
@@ -144,9 +160,6 @@ var questions = [
 }
 ];
 
-
-
-
 function renderQuestions(){
 
 
@@ -155,6 +168,7 @@ function renderQuestions(){
   explanation.innerHTML="";
   // Hide the button
   btnStart.style.display="none";
+  
 
   // CurrentQuestionIndex is a global variable that is incremented each time
   // a question is answered (correctly or incorrectly)
@@ -175,7 +189,6 @@ function renderQuestions(){
 
 
 }
-
 
 function checkAnswer(answer) {
   var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
@@ -216,11 +229,13 @@ function skipTime() {
 }
 
 
-  //Set attributes of possible answers
+//Set attributes of possible answers
 choiceA.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 choiceB.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
-choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff;font-size:24px;");
+choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 choiceD.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
+
+
 
 
 

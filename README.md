@@ -20,6 +20,8 @@ To take the Code Quiz follow the link above to the deployed application. Click o
 
 ![First question of Code Quiz](Capture.PNG)
 
+The user then clicks the answer they think is correct and then the app moves on to the next question. When the time is up..........
+
 
 ## Credits
 * Team at UWA Coding Bootcamp

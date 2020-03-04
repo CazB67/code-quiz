@@ -10,7 +10,7 @@ h1 {
     
   }
 
-p {
+p, #scores-form {
     font-size: 24px;
 }
 

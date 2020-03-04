@@ -10,18 +10,19 @@
 <body>
     <div class="container">
         <div class="row">
-          <div class="col-md-2"><p>Highscores</p></div>
-          <div class="col-md-8"></div>
-          <div class="col-md-2"><p >Time:<span id="time">60</span></p></div>
+          <div class="col-md-10"></div>
+          <div class="col-md-2"><p >Time:<span id="time">60</span></p><p>Score:<span id="score"></span></p></div>
         </div>
+      </div>
+
         <div class="row">
-          <div class="col-md-2"><p>Score:<span id="score"></span></p></div>
+          <div class="col-md-2"></div>
           <div class="col-md-8"></div>
           <div class="col-md-2"></div>
         </div>
 
         <div class="row text-center">
-            <div class="col-md-12" id="quiz">
+            <div class="col-md-12">
         
                 <h1 id="question">Coding Quiz Challenge</h1>
                 <p id="explanation">This is a coding quiz. Select the best responses from the list.</p>
@@ -29,25 +30,39 @@
         </div>
 
         <div class="row text-center">
-          <div class="col-md-4"></div>
-            <div class="col-md-4" id="choices">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
                   <div class="choice" id="A" onclick="checkAnswer('A')"></div>
                   <div class="choice" id="B" onclick="checkAnswer('B')"></div>
                   <div class="choice" id="C" onclick="checkAnswer('C')"></div>
                   <div class="choice" id="D" onclick="checkAnswer('D')"></div>
-                  <button type="button" class="btn btn-primary" id="btnStart">Start Quiz</button>
+                  <button type="button" class="btn btn-primary mb-5" id="btnStart">Start Quiz</button>
             </div>
         </div>
+
             <div class="row text-center">
               <div class="col-md-4"></div>
               <div id="result" class="col-md-4 text-center"></div>  
-            <div class="col-md-4"></div>
-             
-          </div>
+              <div class="col-md-4"></div>
+            </div>
         </div>
+        <div></div>
+
+        <div class="row mt-5" id="highest-scores">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 input-group" id="hide">
+              <label for="score-text"><p>Highest Scores:</p></label>
+              <input class="form-control form-control-lg" type="text" placeholder="Enter Initials" id="scoreInitials">
+    
+              <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+          </div>
+              <div class="col-md-4"></div>
+        
+          <ul id="score-list"></ul>
+      
     </div>
 
-    
+
 
     <script src = "script.js"></script>
 </body>
