@@ -17,15 +17,58 @@ var result = document.getElementById("result");
 var scoreInitialsEl = document.getElementById("scoreInitials");
 //document.getElementById("hide").style.display="none";
 
-var scoreList =document.getElementById("score-list");
-var scoreArray = [];
+var initialsList =document.querySelector("#initials-list");
+var initials = [];
 
 
-var submitButton= document.getElementById("submit").addEventListener("click", submit );
+document.getElementById("submit").addEventListener("click", submit);
 
 function submit() {
-    alert(score + scoreInitialsEl.value);
+event.preventDefault();
+
+var userInput = scoreInitialsEl.value.trim();
+if (userInput === ""){
+  return;
 }
+
+initials.push(userInput);
+scoreInitialsEl.value= "";
+storeInitials();
+renderInitials();
+}
+
+function storeInitials() {
+  localStorage.setItem("initials", JSON.stringify(initials));
+}
+
+function renderInitials () {
+  initialsList.innerHTML ="";
+   
+  for(i=0; i< initials.length; i++) {
+    console.log(score + " - " + scoreInitialsEl.value);
+    var initial = initials[i];
+    var liElement = document.createElement("li");
+    liElement.textContent = initial;
+    liElement.setAttribute("data-index", i);
+    initialsList.appendChild(liElement);
+  
+}
+}
+/*
+function submit() {
+    initialsList.innerHTML ="";
+    
+    for(i=0; i< 2; i++) {
+      console.log(score + " - " + scoreInitialsEl.value);
+     // var initial = initials[i];
+      var liElement = document.createElement("li");
+      liElement.textContent = scoreInitialsEl.value;
+      liElement.setAttribute("data-index", i);
+       initialsList.appendChild(liElement);
+  }  
+}
+*/
+
 
 
 //Adding event listener to button
