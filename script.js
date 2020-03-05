@@ -47,6 +47,10 @@ function setTime() {
     }
   }, 1000);
 }
+//Function to subtract 5 seconds when a question is answered incorrectly
+function skipTime() {
+  secondsLeft= secondsLeft - 5;
+}
 
 //Quiz questions, choices and answers array
 var questions = [
@@ -189,10 +193,6 @@ function checkAnswer(answer) {
     preventMultipleClicks = 1;
   }
 
-//Function to subtract 5 seconds when a question is answered incorrectly
-function skipTime() {
-  secondsLeft= secondsLeft - 5;
-}
 
 //So that text GAME OVER displays and goes to highest score entry
 function gameOver() {

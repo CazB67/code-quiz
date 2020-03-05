@@ -1,6 +1,7 @@
 # Code Quiz
 Assignment 4
 
+
 ## Description
 The task of this assignment was to build a timed code quiz with multiple-choice questions. The deployed application shows understanding of Javascript particularly on click events, event listeners and timing functions and runs in the browser. It features a clean user interface and is responsive.
 The assignment criteria are:
@@ -10,9 +11,9 @@ The assignment criteria are:
 * The game ends when timer reaches 0 or all questions are answered.
 * When the game is over initials and score are saved.
 
+
 ## Installation
-
-
+To install this project I went over classroom activities and highlighted the code which would be relevant to this project. I looked at tutorials on writing quizes in Javascript, particularly the one credited below. Then a new repository was created and the relevant HTML, javascript and css pages created in VS Code. I added IDs for all the relevant parts of the HTML and then 'grabbed' and named them as variables in the .js file. First the timing functions were created to decrement time by both one and five seconds. Event listeners were then added and the main array of quiz questions and answers created. The renderQuestions and checkAnswer functions were then created, changed, added to and ammended. The 'todos' classroom activity was used as a reference point to input and store highest scores. Finally the app was cleaned up so that it looked better and issues fixed such as hiding the submit button so users don't enter their initials multiple times. I've tried adding variable names to these repetitive bits of code (document.getElementById("hide").style.display="block";) but the different states are difficult to control.
 
 
 ## Usage
@@ -36,6 +37,7 @@ The user then types in initials and clicks the submit button. Initials and score
 ## Credits
 * Team at UWA Coding Bootcamp
 * The following tutorial https://www.youtube.com/watch?v=49pYIMygIcU
+
 
 ## License
 MIT License
