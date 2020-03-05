@@ -20,12 +20,25 @@ var result = document.getElementById("result");
 var scoreInitialsEl = document.getElementById("scoreInitials");
 document.getElementById("hide").style.display="none";
 
-var initialsList =document.querySelector("#initials-list");
+var initialsList =document.getElementById("initials-list");
 var initials = [];
+
+function getHighestScores() {
+  document.getElementById("highest-scores-list").style.color ="blue";
+  document.getElementById("hide").style.display="block";
+}
+
+
 document.getElementById("start-again").addEventListener("click", startagain);
 function startagain() {
   window.location.href = "index.html";
 }
+
+document.getElementById("clear-scores").addEventListener("click", clear);
+function clear() {
+  
+}
+
 
 document.getElementById("submit").addEventListener("click", submit);
 
