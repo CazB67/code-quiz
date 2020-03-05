@@ -14,6 +14,7 @@ The assignment criteria are:
 
 
 
+
 ## Usage
 This has been deployed to the URLs 
 
@@ -28,6 +29,8 @@ To take the Code Quiz follow the link above to the deployed application. Click o
 The user then clicks the answer they think is correct and then the app moves on to the next question. When the time is up or all questions have been clicked. The following appears.
 
 ![Game Over Screen](Capture2.PNG)
+
+The user then types in initials and clicks the submit button. Initials and score are then saved to the highest score list. The user then has the options to play again or clear scores by clicking the relevant button.
 
 
 ## Credits
