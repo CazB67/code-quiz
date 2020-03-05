@@ -17,6 +17,7 @@ document.getElementById("hide2").style.display="none";
 var currentQuestionIndex = 0;
 var score = 0;
 var initials = [];
+var preventMultipleClicks=0;
 
 //Adding event listener to button
 document.getElementById("btnStart").addEventListener("click", onButtonStart);
@@ -132,6 +133,7 @@ var questions = [
 ];
 
 function renderQuestions(){
+  preventMultipleClicks = 0;
   //Removes explanation that was on start page.
   explanation.innerHTML="";
   // Hide the  start button when questions appear
@@ -152,35 +154,39 @@ function renderQuestions(){
 }
 
 function checkAnswer(answer) {
-  var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
+  
+  if (preventMultipleClicks === 0) {
+    var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
 
-    if(theAnswerToTheQuestion === answer) 
-    {
-        result.innerHTML = "Correct!";
-        score++;
-        scoreDisplayEL.textContent = score;
-        scoreTextEL.textContent = " " + score + "!";
-    } 
-    else 
-    {
-        result.innerHTML = "Wrong!";
-        skipTime();
+      if(theAnswerToTheQuestion === answer) 
+      {
+          result.innerHTML = "Correct!";
+          score++;
+          scoreDisplayEL.textContent = score;
+          scoreTextEL.textContent = " " + score + "!";
+      } 
+      else 
+      {
+          result.innerHTML = "Wrong!";
+          skipTime();
+      }
+      if (currentQuestionIndex < questions.length) {
+        var resultTextInterval = setInterval(function() {
+          result.innerHTML="";
+          renderQuestions();
+          clearInterval(resultTextInterval);
+        }, 1000);
+      }
+      else {
+        var resultTextInterval = setInterval(function() {
+          result.innerHTML="";
+          clearInterval(timerInterval);
+          gameOver();
+          clearInterval(resultTextInterval);
+        }, 1000);
+      }
     }
-    if (currentQuestionIndex < questions.length) {
-      var resultTextInterval = setInterval(function() {
-        result.innerHTML="";
-        renderQuestions();
-        clearInterval(resultTextInterval);
-      }, 2000);
-    }
-    else {
-      var resultTextInterval = setInterval(function() {
-        result.innerHTML="";
-        clearInterval(timerInterval);
-        gameOver();
-        clearInterval(resultTextInterval);
-      }, 2000);
-    }
+    preventMultipleClicks = 1;
   }
 
 //Function to subtract 5 seconds when a question is answered incorrectly
@@ -202,7 +208,7 @@ function gameOver() {
 
 scoreInitialsEl.addEventListener("input", textInput);
 function textInput() {
-  if (scoreInitialsEl !== ""){
+  if (scoreInitialsEl.value !== ""){
     submitEl.disabled = false;
   }
 }
@@ -231,17 +237,15 @@ function clear() {
 submitEl.addEventListener("click", submit);
 
 function submit() {
-event.preventDefault();
+  event.preventDefault();
 
-var userInput ="Initials:" + scoreInitialsEl.value.trim()  + "  -  " +"Score:" + score;
-if (userInput === ""){
-  return;
-}
+  var userInput ="Initials: " + scoreInitialsEl.value.trim()  + "  -  " +" Score: " + score;
 
-initials.push(userInput);
-scoreInitialsEl.value= "";
-storeInitials();
-renderInitials();
+  initials.push(userInput);
+  scoreInitialsEl.value= "";
+  storeInitials();
+  renderInitials();
+  document.getElementById("hide-submit").style.display="none";
 }
 
 function storeInitials() {
