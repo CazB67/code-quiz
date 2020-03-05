@@ -24,9 +24,13 @@ This has been deployed to the URLs
 * The URL of the GitHub repository is https://github.com/CazB67/code-quiz
 
 To take the Code Quiz follow the link above to the deployed application. Click on the 'Start Quiz' button. The user is then taken to the first question where they are given four options. 
+
 ![First question of Code Quiz](Capture.PNG)
+
 The user then clicks the answer they think is correct and then the app moves on to the next question. When the time is up or all questions have been clicked. The following appears.
+
 ![Game Over Screen](Capture2.PNG)
+
 The user then types in initials and clicks the submit button. Initials and score are then saved to the highest score list. The user then has the options to play again or clear scores by clicking the relevant button.
 
 
