@@ -13,14 +13,22 @@ var currentQuestionIndex = 0;
 
 var scoreEL = document.getElementById("score");
 var score2EL = document.getElementById("score2");
+var submitEl = document.getElementById("submit");
 
 
 var score = 0;
 var result = document.getElementById("result");
 var scoreInitialsEl = document.getElementById("scoreInitials");
-document.getElementById("hide2").style.display="none";
 document.getElementById("hide").style.display="none";
+document.getElementById("hide2").style.display="none";
 
+scoreInitialsEl.addEventListener("input", textInput);
+function textInput() {
+  if (scoreInitialsEl !== ""){
+    submitEl.disabled = false;
+  }
+
+}
 
 var initialsList =document.getElementById("initials-list");
 var initials = [];
@@ -29,6 +37,7 @@ var initials = [];
 function getHighestScores() {
   document.getElementById("highest-scores-list").style.color ="blue";
   document.getElementById("hide").style.display="block";
+  
   init();
 
 }
@@ -47,14 +56,12 @@ renderInitials();
 
 }
 
-
-document.getElementById("submit").addEventListener("click", submit);
+submitEl.addEventListener("click", submit);
 
 function submit() {
 event.preventDefault();
 
-
-var userInput = scoreInitialsEl.value.trim()  + " - " + score;
+var userInput ="Initials:" + scoreInitialsEl.value.trim()  + "  -  " +"Score:" + score;
 if (userInput === ""){
   return;
 }
@@ -104,9 +111,8 @@ document.getElementById("btnStart").addEventListener("click", onButtonStart);
 
 //Function for what happens when the button starts. Calls setTime function.
 function onButtonStart(){
+  document.getElementById("hide").style.display="none";
   setTime();
-  document.getElementById("hide2").style.display="none";
-document.getElementById("hide").style.display="none";
 }
 
 //Define variable for setTime and skipTime functions
@@ -137,8 +143,8 @@ function setTime() {
 function gameOver() {
   result.innerHTML="GAME OVER";
   currentQuestionIndex = questions.length + 1;
-  document.getElementById("hide2").style.display="block";
   document.getElementById("hide").style.display="block";
+  document.getElementById("hide2").style.display="block";
   init();
   var resultTextInterval = setInterval(function() {
     clearInterval(resultTextInterval);
