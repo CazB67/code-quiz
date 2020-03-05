@@ -138,6 +138,7 @@ var questions = [
 
 function renderQuestions(){
   preventMultipleClicks = 0;
+  document.getElementById("hide").style.display="none";
   //Removes explanation that was on start page.
   explanation.innerHTML="";
   // Hide the  start button when questions appear
@@ -158,7 +159,7 @@ function renderQuestions(){
 }
 
 function checkAnswer(answer) {
-  
+  document.getElementById("hide").style.display="none";
   if (preventMultipleClicks === 0) {
     var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
 
