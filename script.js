@@ -1,110 +1,22 @@
 //Naming the variables with HTML IDs
-
-//Span element 60 
 var timeEl = document.getElementById("time");
-
 var questionEl = document.getElementById("question");
 var explanationEl = document.getElementById("explanation");
 var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
-var currentQuestionIndex = 0;
-
-var scoreEL = document.getElementById("score");
-var score2EL = document.getElementById("score2");
+var scoreDisplayEL = document.getElementById("score-display");
+var scoreTextEL = document.getElementById("score-text");
 var submitEl = document.getElementById("submit");
-
-
-var score = 0;
 var result = document.getElementById("result");
 var scoreInitialsEl = document.getElementById("scoreInitials");
+var initialsList =document.getElementById("initials-list");
 document.getElementById("hide").style.display="none";
 document.getElementById("hide2").style.display="none";
-
-scoreInitialsEl.addEventListener("input", textInput);
-function textInput() {
-  if (scoreInitialsEl !== ""){
-    submitEl.disabled = false;
-  }
-
-}
-
-var initialsList =document.getElementById("initials-list");
+var currentQuestionIndex = 0;
+var score = 0;
 var initials = [];
-
-
-function getHighestScores() {
-  document.getElementById("highest-scores-list").style.color ="blue";
-  document.getElementById("hide").style.display="block";
-  
-  init();
-
-}
-
-
-document.getElementById("start-again").addEventListener("click", startagain);
-function startagain() {
-  window.location.href = "index.html";
-}
-
-document.getElementById("clear-scores").addEventListener("click", clear);
-function clear() {
-  initials.length=0;
-  storeInitials();
-renderInitials();
-
-}
-
-submitEl.addEventListener("click", submit);
-
-function submit() {
-event.preventDefault();
-
-var userInput ="Initials:" + scoreInitialsEl.value.trim()  + "  -  " +"Score:" + score;
-if (userInput === ""){
-  return;
-}
-
-initials.push(userInput);
-scoreInitialsEl.value= "";
-storeInitials();
-renderInitials();
-}
-
-function storeInitials() {
-  localStorage.setItem("initials", JSON.stringify(initials));
-}
-
-function renderInitials () {
-  initialsList.innerHTML ="";
-   
-  for(i=0; i< initials.length; i++) {
-    var initial = initials[i];
-    var liElement = document.createElement("li");
-    liElement.textContent = initial;
-    liElement.setAttribute("data-index", i);
-    liElement.setAttribute("class","list");
-    initialsList.appendChild(liElement);
-  
-}
-}
-
-function init() {
-  // Get stored todos from localStorage
-  // Parsing the JSON string to an object
-  var storedInitials = JSON.parse(localStorage.getItem("initials"));
-
-  // If todos were retrieved from localStorage, update the todos array to it
-  if (storedInitials !== null) {
-    initials = storedInitials;
-  }
-
-  // Render todos to the DOM
-  renderInitials();
-}
-
-
 
 //Adding event listener to button
 document.getElementById("btnStart").addEventListener("click", onButtonStart);
@@ -117,10 +29,9 @@ function onButtonStart(){
 
 //Define variable for setTime and skipTime functions
 var secondsLeft = 60;
-var timerInterval
+var timerInterval;
 //Function to decrement time by 1 second
 function setTime() {
-
   //Call renderQuestions function
   renderQuestions();
 
@@ -134,26 +45,7 @@ function setTime() {
       timeEl.textContent=0;     
     }
   }, 1000);
-
-
-
 }
-
-//So that text GAME OVER displays and goes to high score entry
-function gameOver() {
-  result.innerHTML="GAME OVER";
-  currentQuestionIndex = questions.length + 1;
-  document.getElementById("hide").style.display="block";
-  document.getElementById("hide2").style.display="block";
-  init();
-  var resultTextInterval = setInterval(function() {
-    clearInterval(resultTextInterval);
-  }, 2000);
-
-  
-
-}
-
 
 //Quiz questions, choices and answers array
 var questions = [
@@ -240,22 +132,14 @@ var questions = [
 ];
 
 function renderQuestions(){
-
-
-
   //Removes explanation that was on start page.
   explanation.innerHTML="";
-  // Hide the button
+  // Hide the  start button when questions appear
   btnStart.style.display="none";
-  
-
-  // CurrentQuestionIndex is a global variable that is incremented each time
-  // a question is answered (correctly or incorrectly)
+  //CurrentQuestionIndex is a global variable that is incremented each time a question is answered (correctly or incorrectly)
   var currentQuestion = questions[currentQuestionIndex];
-  
   //the variable question is a reference to the html element for displaying the question. 
   questionEl.innerHTML = currentQuestion.question;
-
   // Setting the question answer options. 
   choiceA.innerHTML = currentQuestion.choiceA;
   choiceB.innerHTML = currentQuestion.choiceB;
@@ -264,8 +148,6 @@ function renderQuestions(){
 
     // Increment the question index for the next question.
     currentQuestionIndex++;
-
-
 
 }
 
@@ -276,8 +158,8 @@ function checkAnswer(answer) {
     {
         result.innerHTML = "Correct!";
         score++;
-        scoreEL.textContent = score;
-        score2EL.textContent = " " + score + "!";
+        scoreDisplayEL.textContent = score;
+        scoreTextEL.textContent = " " + score + "!";
     } 
     else 
     {
@@ -298,8 +180,6 @@ function checkAnswer(answer) {
         gameOver();
         clearInterval(resultTextInterval);
       }, 2000);
-
-      
     }
   }
 
@@ -308,8 +188,94 @@ function skipTime() {
   secondsLeft= secondsLeft - 5;
 }
 
+//So that text GAME OVER displays and goes to highest score entry
+function gameOver() {
+  result.innerHTML="GAME OVER";
+  currentQuestionIndex = questions.length + 1;
+  document.getElementById("hide").style.display="block";
+  document.getElementById("hide2").style.display="block";
+  init();
+  var resultTextInterval = setInterval(function() {
+    clearInterval(resultTextInterval);
+  }, 2000);
+}
 
-//Set attributes of possible answers
+scoreInitialsEl.addEventListener("input", textInput);
+function textInput() {
+  if (scoreInitialsEl !== ""){
+    submitEl.disabled = false;
+  }
+}
+
+function getHighestScores() {
+  document.getElementById("highest-scores-list").style.color ="blue";
+  document.getElementById("hide").style.display="block";
+  
+  init();
+
+}
+
+document.getElementById("start-again").addEventListener("click", startagain);
+function startagain() {
+  window.location.href = "index.html";
+}
+
+document.getElementById("clear-scores").addEventListener("click", clear);
+function clear() {
+  initials.length=0;
+  storeInitials();
+  renderInitials();
+
+}
+
+submitEl.addEventListener("click", submit);
+
+function submit() {
+event.preventDefault();
+
+var userInput ="Initials:" + scoreInitialsEl.value.trim()  + "  -  " +"Score:" + score;
+if (userInput === ""){
+  return;
+}
+
+initials.push(userInput);
+scoreInitialsEl.value= "";
+storeInitials();
+renderInitials();
+}
+
+function storeInitials() {
+  localStorage.setItem("initials", JSON.stringify(initials));
+}
+
+function renderInitials () {
+  initialsList.innerHTML ="";
+   
+  for(i=0; i< initials.length; i++) {
+    var initial = initials[i];
+    var liElement = document.createElement("li");
+    liElement.textContent = initial;
+    liElement.setAttribute("data-index", i);
+    liElement.setAttribute("class","list");
+    initialsList.appendChild(liElement);
+}
+}
+
+function init() {
+  // Get stored initials from localStorage
+  // Parsing the JSON string to an object
+  var storedInitials = JSON.parse(localStorage.getItem("initials"));
+
+  // If initials were retrieved from localStorage, update the initials array to it
+  if (storedInitials !== null) {
+    initials = storedInitials;
+  }
+
+  // Render initialss to the DOM
+  renderInitials();
+}
+
+//Set attributes of choice elements
 choiceA.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 choiceB.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
 choiceC.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
