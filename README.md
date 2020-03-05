@@ -2,20 +2,13 @@
 Assignment 4
 
 ## Description
-The task of this assignment was to build a timed code quiz with multiple-choice questions. The deployed application shows understanding of Javascript particularly on click events, event listeners and timing functions and runs in the browser. It features a clean user interface is responsive.
+The task of this assignment was to build a timed code quiz with multiple-choice questions. The deployed application shows understanding of Javascript particularly on click events, event listeners and timing functions and runs in the browser. It features a clean user interface and is responsive.
 The assignment criteria are:
-
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
-* 
+* A button that when clicked starts a timer and presents a question. 
+* When that question is answered another question is asked.
+* An incorrect answer causes time to be subtracted from the clock.
+* The game ends when timer reaches 0 or all questions are answered.
+* When the game is over initials and score are saved.
 
 ## Installation
 
@@ -32,7 +25,9 @@ To take the Code Quiz follow the link above to the deployed application. Click o
 
 ![First question of Code Quiz](Capture.PNG)
 
-The user then clicks the answer they think is correct and then the app moves on to the next question. When the time is up..........
+The user then clicks the answer they think is correct and then the app moves on to the next question. When the time is up or all questions have been clicked. The following appears.
+
+![Game Over Screen](Capture2.PNG)
 
 
 ## Credits
