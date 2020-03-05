@@ -12,6 +12,9 @@ var choiceD = document.getElementById("D");
 var currentQuestionIndex = 0;
 
 var scoreEL = document.getElementById("score");
+var score2EL = document.getElementById("score2");
+
+
 var score = 0;
 var result = document.getElementById("result");
 var scoreInitialsEl = document.getElementById("scoreInitials");
@@ -19,12 +22,16 @@ document.getElementById("hide").style.display="none";
 
 var initialsList =document.querySelector("#initials-list");
 var initials = [];
-
+document.getElementById("start-again").addEventListener("click", startagain);
+function startagain() {
+  window.location.href = "index.html";
+}
 
 document.getElementById("submit").addEventListener("click", submit);
 
 function submit() {
 event.preventDefault();
+
 
 var userInput = scoreInitialsEl.value.trim()  + " - " + score;
 if (userInput === ""){
@@ -49,6 +56,7 @@ function renderInitials () {
     var liElement = document.createElement("li");
     liElement.textContent = initial;
     liElement.setAttribute("data-index", i);
+    liElement.setAttribute("class","list");
     initialsList.appendChild(liElement);
   
 }
@@ -106,13 +114,11 @@ function setTime() {
 function gameOver() {
   result.innerHTML="GAME OVER";
   currentQuestionIndex = questions.length + 1;
-  alert("Your score is " + score);
   document.getElementById("hide").style.display="block";
   init();
   var resultTextInterval = setInterval(function() {
     clearInterval(resultTextInterval);
   }, 2000);
-  //window.location.replace("scores.html");
 
   
 
@@ -241,6 +247,7 @@ function checkAnswer(answer) {
         result.innerHTML = "Correct!";
         score++;
         scoreEL.textContent = score;
+        score2EL.textContent = " " + score + "!";
     } 
     else 
     {
