@@ -18,14 +18,19 @@ var score2EL = document.getElementById("score2");
 var score = 0;
 var result = document.getElementById("result");
 var scoreInitialsEl = document.getElementById("scoreInitials");
+document.getElementById("hide2").style.display="none";
 document.getElementById("hide").style.display="none";
+
 
 var initialsList =document.getElementById("initials-list");
 var initials = [];
 
+
 function getHighestScores() {
   document.getElementById("highest-scores-list").style.color ="blue";
   document.getElementById("hide").style.display="block";
+  init();
+
 }
 
 
@@ -36,7 +41,10 @@ function startagain() {
 
 document.getElementById("clear-scores").addEventListener("click", clear);
 function clear() {
-  
+  initials.length=0;
+  storeInitials();
+renderInitials();
+
 }
 
 
@@ -97,6 +105,8 @@ document.getElementById("btnStart").addEventListener("click", onButtonStart);
 //Function for what happens when the button starts. Calls setTime function.
 function onButtonStart(){
   setTime();
+  document.getElementById("hide2").style.display="none";
+document.getElementById("hide").style.display="none";
 }
 
 //Define variable for setTime and skipTime functions
@@ -127,6 +137,7 @@ function setTime() {
 function gameOver() {
   result.innerHTML="GAME OVER";
   currentQuestionIndex = questions.length + 1;
+  document.getElementById("hide2").style.display="block";
   document.getElementById("hide").style.display="block";
   init();
   var resultTextInterval = setInterval(function() {
