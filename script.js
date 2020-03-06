@@ -222,10 +222,11 @@ function gameOver() {
 
   //Ensures last question canbe answered
   currentQuestionIndex = questions.length + 1;
-
+  
   //Show form so initials can be input and score is shown to user
   document.getElementById("hide-highest-scores").style.display="block";
   document.getElementById("hide-form").style.display="block";
+  
   
   //Call init()
   init();
@@ -253,6 +254,7 @@ function submit() {
   renderInitials();
   //Hide submit button so user doesnt submit again
   document.getElementById("hide-submit").style.display="none";
+  document.getElementById("mainhide").style.display="none";
 }
 
 function getHighestScores() {
