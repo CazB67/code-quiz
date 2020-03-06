@@ -303,9 +303,9 @@ function startagain() {
   window.location.href = "index.html";
 }
 
-//Clear scores by setting link list to 0
-document.getElementById("clear-scores").addEventListener("click", clear);
-function clear() {
+//Clear saved initials/scores list by setting link list to 0
+document.getElementById("clear-scores").addEventListener("click", clearInitialsScores);
+function clearInitialsScores() {
   initials.length=0;
   storeInitials();
   renderInitials();
