@@ -177,15 +177,18 @@ var questions = [
           {
               resultEl.innerHTML = "Correct!";
               score++;
-              scoreDisplayEL.textContent = score;
-              scoreTextEL.textContent = " " + score + "!";
+              
           } 
           //Skip time decrements time by 5seconds in stead of the usual 1.
           else 
           {
               resultEl.innerHTML = "Wrong!";
               skipTime();
+              
           }
+          
+          scoreDisplayEL.textContent = score;
+          scoreTextEL.textContent = " " + score + "!";
           //While we still have questions, quiz keeps running. Sets time between questions
           if (currentQuestionIndex < questions.length) {
             var resultElTextInterval = setInterval(function() {
