@@ -9,7 +9,7 @@ var choiceDEL = document.getElementById("D");
 var scoreDisplayEL = document.getElementById("score-display");
 var scoreTextEL = document.getElementById("score-text");
 var submitEl = document.getElementById("submit");
-var result = document.getElementById("result");
+var resultEl = document.getElementById("result");
 var formInitialsInputEl = document.getElementById("form-initials-input");
 var initialsList =document.getElementById("initials-list");
 
@@ -17,11 +17,12 @@ var initialsList =document.getElementById("initials-list");
 document.getElementById("hide-highest-scores").style.display="none";
 document.getElementById("hide-form").style.display="none";
 
-//Setting variables for questions array, score, initials entrylist
+//Setting variables for questions array index, score, initials entrylist
 var currentQuestionIndex = 0;
 var score = 0;
 var initials = [];
 var preventMultipleClicks=0;
+var theGameIsOver=false;
 
 //Adding event listener to start button
 document.getElementById("btnStart").addEventListener("click", onButtonStart);
@@ -157,57 +158,57 @@ var questions = [
     choiceCEL.innerHTML = currentQuestion.choiceC;
     choiceDEL.innerHTML = currentQuestion.choiceD;
   
-      // Increment the question index for the next question.
-      currentQuestionIndex++;
-  
   }
 
   function checkAnswer(answer) {
-    //Hide highest scores list when checking answers so it looks better
-    document.getElementById("hide-highest-scores").style.display="none";
-  
-    //Only start check answers functionwhen no answer has been clicked
-    if (preventMultipleClicks === 0) {
-  
-      var theAnswerToTheQuestion = questions[currentQuestionIndex - 1].answer;
-  
-        //If the answer is correct, score increments, and shows both at top of screen and at gameOver()
-        if(theAnswerToTheQuestion === answer) 
-        {
-            result.innerHTML = "Correct!";
-            score++;
-            scoreDisplayEL.textContent = score;
-            scoreTextEL.textContent = " " + score + "!";
-        } 
-        //Skip time decrements time by 5seconds in stead of the usual 1.
-        else 
-        {
-            result.innerHTML = "Wrong!";
-            skipTime();
-        }
-        //While we still have questions, quiz keeps running. Sets time between questions
-        if (currentQuestionIndex < questions.length) {
-          var resultTextInterval = setInterval(function() {
-            result.innerHTML="";
-            renderQuestions();
-            clearInterval(resultTextInterval);
-          }, 1000);
-        }
-  
-        //If no questions are left gameOver function runs. Time interval is between the game ending and gameover function starting
-        else {
-          var resultTextInterval = setInterval(function() {
-            result.innerHTML="";
-            clearInterval(timerInterval);
-            gameOver();
-            clearInterval(resultTextInterval);
-          }, 1000);
-        }
-      }
-      //Finish function with one click
-      preventMultipleClicks = 1;
-    }
+    if (theGameIsOver === false) {
+      //Hide highest scores list when checking answers so it looks better
+      document.getElementById("hide-highest-scores").style.display="none";
+    
+      //Only check answers functionwhen no answer has been clicked for this question
+      if (preventMultipleClicks === 0) {
+        
+          var theAnswerToTheQuestion = questions[currentQuestionIndex].answer;
 
+          // Increment the question index for the next question.
+          currentQuestionIndex++;
+          //If the answer is correct, score increments, and shows both at top of screen and at gameOver()
+          if(theAnswerToTheQuestion === answer) 
+          {
+              resultEl.innerHTML = "Correct!";
+              score++;
+              scoreDisplayEL.textContent = score;
+              scoreTextEL.textContent = " " + score + "!";
+          } 
+          //Skip time decrements time by 5seconds in stead of the usual 1.
+          else 
+          {
+              resultEl.innerHTML = "Wrong!";
+              skipTime();
+          }
+          //While we still have questions, quiz keeps running. Sets time between questions
+          if (currentQuestionIndex < questions.length) {
+            var resultElTextInterval = setInterval(function() {
+              resultEl.innerHTML="";
+              renderQuestions();
+              clearInterval(resultElTextInterval);
+            }, 1000);
+          }
+    
+          //If no questions are left gameOver function runs. Time interval is between the game ending and gameover function starting
+          else {
+            var resultElTextInterval = setInterval(function() {
+              resultEl.innerHTML="";
+              clearInterval(timerInterval);
+              gameOver();
+              clearInterval(resultElTextInterval);
+            }, 1000);
+          }
+        }
+        //Finish function with one click
+        preventMultipleClicks = 1;
+    }
+  }
   
 //Function to subtract 5 seconds when a question is answered incorrectly
 function skipTime() {
@@ -216,14 +217,16 @@ function skipTime() {
 
 //So that text GAME OVER displays and goes to highest score entry
 function gameOver() {
-  result.innerHTML="GAME OVER";
+  theGameIsOver = true;
+  resultEl.innerHTML="GAME OVER";
 
+  //Ensures last question canbe answered
   currentQuestionIndex = questions.length + 1;
 
   //Show form so initials can be input and score is shown to user
   document.getElementById("hide-highest-scores").style.display="block";
   document.getElementById("hide-form").style.display="block";
-
+  
   //Call init()
   init();
 }
