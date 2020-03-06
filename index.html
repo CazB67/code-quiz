@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="row">
-          <div class="col-md-10"><p id="highest-scores-list" onclick="getHighestScores()">Highest Scores</p></div>
+          <div class="col-md-10"><p id="highest-scores-top" onclick="getHighestScores()">Highest Scores</p></div>
           <div class="col-md-2"><p >Time:<span id="time">60</span></p><p>Score:<span id="score-display"></span></p></div>
         </div>
 
@@ -38,7 +38,7 @@
               <div class="col-md-4"></div>
         </div>
 
-      <div id="hide2">
+      <div id="hide-form">
         <div class="row mt-5 text-center">
           <div class="col-md-12"> 
             <h2>All Done!</h2>
@@ -48,9 +48,9 @@
 
         <div id="hide-submit">
         <div class="row justify-content-center">
-          <div class="col-md-5 input-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Enter Initials" id="scoreInitials">   
-          </div>
+          <form class="col-md-5 input-group">
+            <input class="form-control form-control-lg" type="text" placeholder="Enter Initials" id="form-initials-input">   
+          </form>
         </div>
       
           <div class="row text-center">
@@ -61,11 +61,11 @@
       </div>
         </div>
 
-          <div class="row text-center mt-3" id="hide">
+          <div class="row mt-3 text-center" id="hide-highest-scores">
             <div class="col-md-12">
               <h2 class="mb-3">Highest Scores List</h2>
               <ul class="mb-2" id="initials-list"></ul>
-              <button type="reset" class="btn btn-primary" id="start-again">Start Again</button>
+              <button type="reset" class="btn btn-primary ali" id="start-again">Start Again</button>
               <button type="link" class="btn btn-primary" id="clear-scores">Clear Scores</button>
               </div>
           </div> 
