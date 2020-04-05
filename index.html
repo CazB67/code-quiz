@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css"/>
+
 </head>
-<body>
+<body></body>
+
+<!-- As a heading -->
+<nav class="navbar">
+  
+ 
+</nav>
     <div class="container">
         <div class="row">
           <div class="col-md-10"><p id="highest-scores-top" onclick="getHighestScores()">Highest Scores</p></div>
@@ -18,7 +28,9 @@
           <div class="col-md-12">
             <h1 id="question">Coding Quiz Challenge</h1>
             <p id="explanation">This is a coding quiz. Select the best response from the list.</p>
+           
           </div>
+          
         </div>
 
         <div class="row text-center">
@@ -28,8 +40,10 @@
                   <div class="choice" id="B" onclick="checkAnswer('B')"></div>
                   <div class="choice" id="C" onclick="checkAnswer('C')"></div>
                   <div class="choice" id="D" onclick="checkAnswer('D')"></div>
-                  <button type="button" class="btn btn-primary mb-5" id="btnStart">Start Quiz</button>
+                  <button type="button" class="btn mb-5" id="btnStart">Start Quiz</button>
+                  
             </div>
+            
         </div>
 
         <div class="row text-center">
@@ -39,39 +53,60 @@
         </div>
         </div>
 
-      <div id="hide-form">
-        <div class="row mt-4 text-center">
-          <div class="col-md-12"> 
-            <h2>All Done!</h2>
-            <label for="score-text"><p>Your score is:<span id="score-text"></span> </p></label>
-          </div>
-        </div>
-
-        <div id="hide-submit">
-        <div class="row justify-content-center">
-          <form class="col-md-5 input-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Enter Initials" id="form-initials-input">   
-          </form>
-        </div>
-      
-          <div class="row text-center">
-            <div class="col-md-12" >
-              <button type="submit" class="btn btn-primary" id="submit" disabled >Submit</button>
+        <div class="modal" id="myModal2" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title">All Done!</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="score-text"><h3>Your score is:<span id="score-text"></span> </h3></label>
+              </div>
+              <div class="row text-center">
+                <form class="col-md-5 input-group" id="box">
+                  <input class="form-control form-control-lg "  type="text" placeholder="Enter Initials" id="form-initials-input">   
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn" id="submit" disabled >Submit</button>
+              
+              </div>
             </div>
           </div>
-      </div>
         </div>
 
-          <div class="row mt-3 text-center" id="hide-highest-scores">
-            <div class="col-md-12">
-              <h2 class="mb-3">Highest Scores List</h2>
-              <ul class="mb-2" id="initials-list"></ul>
-              <button type="reset" class="btn btn-primary ali" id="start-again">Start Again</button>
-              <button type="link" class="btn btn-primary" id="clear-scores">Clear Scores</button>
+        <div class="modal" id="myModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title">Highest Scores List</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-          </div> 
+              <div class="modal-body">
+                <ul class="mb-2" id="initials-list"></ul>
+              </div>
+              <div class="modal-footer">
+              <button type="reset" class="btn ali" id="start-again">Start Again</button>
+              <button type="link" class="btn" id="clear-scores">Clear Scores</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3 text-center" id="hide-highest-scores">
+          
+          <div class="col-md-12">
+            
+            <ul class="mb-2" id="initials-list"></ul>
+            <button type="reset" class="btn ali" id="start-again">Start Again</button>
+            <button type="link" class="btn" id="clear-scores">Clear Scores</button>
+            </div>
+        </div> 
     </div>
-
     <script src = "script.js"></script>
 </body>
 </html>

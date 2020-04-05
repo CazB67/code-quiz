@@ -17,6 +17,11 @@ h2{
     font-size: 2.5em;
 }
 
+h3{
+    color: rgb(3, 3, 88);
+    font-size: 2em;
+}
+
 p, #scores-form {
     font-size: 24px;
 }
@@ -28,9 +33,20 @@ p, #scores-form {
 .list {
     margin-top: 10px;
     list-style-type: none;
-    background-color: rgb(5, 5, 95);
+    background-color: rgb(3, 3, 88);
     color: #ffffff;
     padding: 1em;
     font-size: 16px;
     
 }
+
+#box {
+    text-align: center;
+    padding-left: 30px;
+}
+
+.btn, .navbar {
+    background-color: rgb(3, 3, 88);
+    color: #ffffff;
+}
+

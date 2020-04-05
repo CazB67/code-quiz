@@ -1,3 +1,6 @@
+/*$(document).ready(function(){
+  $("#myModal").modal('show');
+});*/
 //Naming the variables with HTML IDs
 var timeEl = document.getElementById("time");
 var questionEl = document.getElementById("question");
@@ -15,7 +18,7 @@ var initialsList =document.getElementById("initials-list");
 
 //Hide highest scores, your score is and form elements
 document.getElementById("hide-highest-scores").style.display="none";
-document.getElementById("hide-form").style.display="none";
+//document.getElementById("hide-form").style.display="none";
 
 //Setting variables for questions array index, score, initials entrylist
 var currentQuestionIndex = 0;
@@ -29,7 +32,9 @@ document.getElementById("btnStart").addEventListener("click", onButtonStart);
 
 //Function for what happens when the button starts. Calls setTime function.
 function onButtonStart(){
-  document.getElementById("hide-highest-scores").style.display="none";
+  
+  document.getElementById("highest-scores-top").style.display="none";
+
   setTime();
 }
 
@@ -190,6 +195,7 @@ var questions = [
           scoreDisplayEL.textContent = score;
           scoreTextEL.textContent = " " + score + "!";
           //While we still have questions, quiz keeps running. Sets time between questions
+        
           if (currentQuestionIndex < questions.length) {
             var resultElTextInterval = setInterval(function() {
               resultEl.innerHTML="";
@@ -222,14 +228,15 @@ function skipTime() {
 function gameOver() {
   theGameIsOver = true;
   resultEl.innerHTML="GAME OVER";
+  $("#myModal2").modal('show');
+  
 
   //Ensures last question canbe answered
   currentQuestionIndex = questions.length + 1;
   
   //Show form so initials can be input and score is shown to user
-  document.getElementById("hide-highest-scores").style.display="block";
-  document.getElementById("hide-form").style.display="block";
-  
+  //document.getElementById("hide-highest-scores").style.display="block";
+  //document.getElementById("hide-form").style.display="block";
   
   //Call init()
   init();
@@ -240,6 +247,7 @@ function textInput() {
   if (formInitialsInputEl.value !== ""){
     submitEl.disabled = false;
   }
+ 
 }
 
 //Submit button event listener
@@ -255,18 +263,18 @@ function submit() {
   formInitialsInputEl.value= "";
   storeInitials();
   renderInitials();
-  //Hide submit button so user doesnt submit again
-  document.getElementById("hide-submit").style.display="none";
-  document.getElementById("mainhide").style.display="none";
+  $("#myModal2").hide();
+  $("#myModal").modal('show');
+  
 }
 
 function getHighestScores() {
   
   //Change highest score link to blue when clicked
   document.getElementById("highest-scores-top").style.color ="blue";
-  //Show highest scores list
-  document.getElementById("hide-highest-scores").style.display="block";
 
+  //show modal
+  $("#myModal").modal('show');
   init();
 
 }
@@ -321,10 +329,10 @@ function clearInitialsScores() {
 }
 
 //Set attributes of choice elements
-choiceAEl.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
-choiceBEL.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
-choiceCEL.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
-choiceDEL.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:#338bff; font-size:24px;");
+choiceAEl.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:rgb(3, 3, 88); font-size:24px;");
+choiceBEL.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:rgb(3, 3, 88); font-size:24px;");
+choiceCEL.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white;background-color:rgb(3, 3, 88); font-size:24px;");
+choiceDEL.setAttribute("style", "margin-bottom: 10px; width:auto; text-align:center; color:white; background-color:rgb(3, 3, 88); font-size:24px;");
 
 
 
