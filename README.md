@@ -1,5 +1,5 @@
 # Code Quiz
-Assignment 4
+A timed code quiz with multiple-choice questions using Javascript and Bootstrap.
 
 
 ## Description
